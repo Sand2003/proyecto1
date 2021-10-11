@@ -1,0 +1,24 @@
+[
+{"type":"header","version":"5.1.1","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"taller de node.js"},
+{"type":"table","name":"empleados","database":"taller de node.js","data":
+[
+{   "empleados": {
+    "user_id":"1",
+    "user_name":"Sandra",
+    "user_lastname":"Fermín",
+    "user_number":"544641657",
+    "user_mail":"sandy.paola2003@gmai",
+    "user_address":"fevrybtyhytennte"}
+}]
+}
+,{"type":"table","name":"perfiles","database":"taller de node.js","data":
+[
+{   "perfiles": {
+    "user_id":"1",
+    "user_name":"Sandra",
+    "user_lastname":"Fermín",
+    "user_rol":"ADMINISTRADOR"}
+}]
+}
+]
