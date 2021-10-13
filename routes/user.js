@@ -4,12 +4,12 @@ const user = express.Router();
 const db = require('../config/database');
 
 user.post('/signin',async (req, res, next) => {
-    const { user_name, user_mail, user_password } = req.body
+    const { user_name, user_lastname, user_number, user_mail, user_password, user_addres, user_rol } = req.body
 
-    if(user_name && user_mail && user_password) 
+    if(user_name && user_lastname && user_number && user_mail && user_password && user_addres && user_rol) 
     {
-        let query = "INSERT INTO empleados (user_name, user_mail, user_password) ";
-        query += `VALUES ('${user_name}', '${user_mail}', '${user_password}')`;
+        let query = "INSERT INTO empleados (user_name, user_lastname, user_number, user_mail, user_password, user_addres, user_rol) ";
+        query += `VALUES ('${user_name}', '${user_lastname}', '${user_number}', '${user_mail}', '${user_password}', '${user_addres}', '${user_rol}')`;
         
         const rows = await db.query(query);
     
@@ -40,7 +40,7 @@ user.post('/login',async (req, res, next) =>{
             return res.status(200).json({code:200, message:token});
         }
         else{
-            return res.status(401).json({code:401, message:"Usuario y/o contraseña incorrectos"});
+            return res.status(200).json({code:401, message:"Usuario y/o contraseña incorrectos"});
         }
     }
     else{
