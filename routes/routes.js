@@ -1,7 +1,6 @@
 const express = require('express');
 const taller = express.Router();
 const db = require('../config/database');
-//const TALLER = require('../taller_de_node_js.json').empleados;
 
 //publicar empleados 
 taller.post("/",async (req, res, next) =>{
@@ -30,11 +29,11 @@ taller.delete('/delete/:id([0-9]{1,3})',async (req, res, next) => {
 });
 
 //modificar empleados
-taller.put('/:id([0-9]{1,3})', async (req, res, next) => {
-    const {user_password, user_name, user_lastname, user_number, user_mail, user_address, user_rol} = req.body
+taller.put('/put', async (req, res, next) => {
+    const {user_id, user_password, user_name, user_lastname, user_number, user_mail, user_address, user_rol} = req.body
     
-    if(user_password && user_name && user_lastname && user_number && user_mail && user_address && user_rol) {
-        let query = `UPDATE empleados SET user_password='${user_password}',user_name='${user_name}',user_lastname='${user_lastname}',`;
+    if(user_id && user_password && user_name && user_lastname && user_number && user_mail && user_address && user_rol) {
+        let query = `UPDATE empleados SET user_id='${user_id}',user_password='${user_password}',user_name='${user_name}',user_lastname='${user_lastname}',`;
         query += `user_number='${user_number}',user_mail='${user_mail}',user_address='${user_address}', user_rol='${user_rol}' WHERE user_id=${req.params.id}`;
         const rows =await db.query(query);
         if(rows.affectedRows == 1) {
@@ -52,5 +51,15 @@ taller.get("/",async (req, res, next) =>{
     return res.status(200).json({code: 200, message: T});
 });
 
+//obtener empleados por su nombre
+taller.get('/:name([A-Za-z]+)',async (req, res, next) => {
+    const name = req.params.name;
+    const T = await db.query("SELECT * FROM empleados WHERE user_name='"+name+"';");
+    if (T.length > 0) {
+        
+         res.status(200).json({code: 200, message: T}) 
+    }
+        res.status(404).send({code: 404, message: "Usuario no encontrado"});
+});
 
 module.exports = taller;
