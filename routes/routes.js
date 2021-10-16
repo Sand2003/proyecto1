@@ -29,20 +29,22 @@ taller.delete('/delete/:id([0-9]{1,3})',async (req, res, next) => {
 });
 
 //modificar empleados
-taller.put('/put', async (req, res, next) => {
-    const {user_id, user_password, user_name, user_lastname, user_number, user_mail, user_address, user_rol} = req.body
-    
-    if(user_id && user_password && user_name && user_lastname && user_number && user_mail && user_address && user_rol) {
-        let query = `UPDATE empleados SET user_id='${user_id}',user_password='${user_password}',user_name='${user_name}',user_lastname='${user_lastname}',`;
-        query += `user_number='${user_number}',user_mail='${user_mail}',user_address='${user_address}', user_rol='${user_rol}' WHERE user_id=${req.params.id}`;
-        const rows =await db.query(query);
-        if(rows.affectedRows == 1) {
-            return res.status(200).json({code: 200, message: "Usuario actualizado correctamente" });
-        }
-        return res.status(500).json({code: 500, message: "Ocurrió un error" });
-    }
-    return res.status(500).json({code: 500, message: "Campos incompletos" });
+taller.put('/put/:id([0-9]{1,3})',async (req, res, next) => {
+    const { user_name, user_lastname, user_number, user_mail, user_password, user_address } = req.body
 
+    if(user_name && user_lastname && user_number && user_mail && user_password && user_address) 
+    {
+        let query = `UPDATE empleados set user_name = '${user_name}', user_lastname = '${user_lastname}', user_mail = '${user_mail}', user_address = '${user_address}', user_number = ${user_number}, user_password = '${user_password}' WHERE user_id=${req.params.id}`;
+        const rows = await db.query(query);
+    
+        if(rows.affectedRows == 1){
+            return res.status(201).json({code: 201, message: "Usuario modificado correctamente"});
+        }
+        return res.status(500).json({code: 500, message: "Ocurrió un error"});
+    }
+    return res.status(500).json({code: 500, message: "Campos incompletos"});
+    
+    
 });
 
 //obtener empleados, opcional
@@ -54,7 +56,7 @@ taller.get("/",async (req, res, next) =>{
 //obtener empleados por su nombre
 taller.get('/:name([A-Za-z]+)',async (req, res, next) => {
     const name = req.params.name;
-    const T = await db.query("SELECT * FROM empleados WHERE user_name='"+name+"';");
+    const T = await db.query(`SELECT * FROM empleados WHERE user_name='${req.params.name}'`);
     if (T.length > 0) {
         
          res.status(200).json({code: 200, message: T}) 

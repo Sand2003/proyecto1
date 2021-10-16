@@ -1,6 +1,7 @@
 //dependencies
 const morgan = require('morgan');
 const express = require('express');
+
 const app = express();
 //routes
 const routes = require('./routes/routes');
@@ -10,6 +11,8 @@ const auth = require('./middleware/auth');
 const notfound = require('./middleware/notfound');
 const index = require('./middleware/index');
 const cors = require('./middleware/cors');
+
+app.set('view engine', 'ejs');
 
 app.use(cors);
 app.use(morgan('dev'));

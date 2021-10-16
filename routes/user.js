@@ -3,14 +3,12 @@ const jwt = require('jsonwebtoken');
 const user = express.Router();
 const db = require('../config/database');
 
-user.put('/put',async (req, res, next) => {
+user.put('/put/:id([0-9]{1,3})',async (req, res, next) => {
     const { user_name, user_lastname, user_number, user_mail, user_password, user_address } = req.body
 
     if(user_name && user_lastname && user_number && user_mail && user_password && user_address) 
     {
-        let query = "INSERT INTO empleados (user_name, user_lastname, user_number, user_mail, user_password, user_address) ";
-        query += `VALUES ('${user_name}', '${user_lastname}', '${user_number}', '${user_mail}', '${user_password}', '${user_address}')`;
-        
+        let query = `UPDATE empleados set user_name = '${user_name}', user_lastname = '${user_lastname}', user_mail = '${user_mail}', user_address = '${user_address}', user_number = ${user_number}, user_password = '${user_password}' WHERE user_id=${req.params.id};`;
         const rows = await db.query(query);
     
         if(rows.affectedRows == 1){
@@ -87,7 +85,7 @@ user.get('/', async (req, res, next) => {
 
 user.get('/:name([A-Za-z]+)',async (req, res, next) => {
     const name = req.params.name;
-    const T = await db.query("SELECT * FROM empleados WHERE user_name='"+name+"';");
+    const T = await db.query(`SELECT * FROM empleados WHERE user_name='${req.params.name}'`);
     if (T.length > 0) {
         
          res.status(200).json({code: 200, message: T}) 
