@@ -22,7 +22,7 @@ function borrar(){
     
     axios({
         method: 'delete',
-        url: 'https://proyecto1empleados.herokuapp.com/user/delete/' + id
+        url: 'http://localhost:9000/user/delete/' + id
     }, headers).then(function(res) {
         console.log(res);
         alert("Usuario eliminado correctamente");
