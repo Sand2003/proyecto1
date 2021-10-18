@@ -20,7 +20,7 @@ function init(){
 
 
 function loadUser(){
-    axios.get("http://localhost:9000/user", headers)
+    axios.get("https://sand2003.github.io/proyecto1/Pokedex/user", headers)
     .then(function(res){
         console.log(res);
     }).catch(function(err){

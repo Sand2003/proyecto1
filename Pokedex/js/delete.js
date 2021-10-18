@@ -22,7 +22,7 @@ function borrar(){
     
     axios({
         method: 'delete',
-        url: 'http://localhost:9000/user/delete/' + id
+        url: 'https://sand2003.github.io/proyecto1/Pokedex/user/delete/' + id
     }, headers).then(function(res) {
         console.log(res);
         alert("Usuario eliminado correctamente");
