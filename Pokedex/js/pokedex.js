@@ -20,7 +20,7 @@ function init(){
 
 
 function loadUser(){
-    axios.get("http://localhost:9000/user", headers)
+    axios.get("https://proyecto1empleados.herokuapp.com/user", headers)
     .then(function(res){
         console.log(res);
     }).catch(function(err){

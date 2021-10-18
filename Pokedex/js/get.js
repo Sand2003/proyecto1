@@ -22,7 +22,7 @@ function buscar(){
     
     axios({
         method: 'get',
-        url: 'http://localhost:9000/user/' + name
+        url: 'https://proyecto1empleados.herokuapp.com/user/' + name
     },headers).then(function(res) {
         console.log(res);
         displayuser(res.data.message);

@@ -29,7 +29,7 @@ function modify(){
 
     axios({
         method: 'put',
-        url: 'http://localhost:9000/user/put/' + id,
+        url: 'https://proyecto1empleados.herokuapp.com/user/put/' + id,
         data: {
             user_id: id,
             user_name: name,
