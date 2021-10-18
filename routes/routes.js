@@ -34,7 +34,8 @@ taller.put('/put/:id([0-9]{1,3})',async (req, res, next) => {
 
     if(user_name && user_lastname && user_number && user_mail && user_password && user_address) 
     {
-        let query = `UPDATE empleados set user_name = '${user_name}', user_lastname = '${user_lastname}', user_mail = '${user_mail}', user_address = '${user_address}', user_number = ${user_number}, user_password = '${user_password}' WHERE user_id=${req.params.id}`;
+        let query = `UPDATE empleados set user_name = '${user_name}', user_lastname = '${user_lastname}', user_mail = '${user_mail}',`
+        query += `user_address = '${user_address}', user_number = ${user_number}, user_password = '${user_password}' WHERE user_id=${req.params.id}`;
         const rows = await db.query(query);
     
         if(rows.affectedRows == 1){
