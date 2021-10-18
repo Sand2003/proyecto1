@@ -20,7 +20,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //rutas
-app.get("/", index);
+app.get("/", (req, res, next) =>{
+    res.status(200).send("Hola mundo");
+});
 
 app.use("/user", user);
 app.use(auth);
