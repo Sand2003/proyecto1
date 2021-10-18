@@ -4,7 +4,7 @@ window.onload = init;
 function init(){
     document.querySelector('.btn-secondary').addEventListener('click', function() {
         //document.querySelector('.btn-secondary') => boton de Registro
-        window.location.href = "signin.html"
+        window.location.href = "/Pokedex/signin.html"
     });
 
     document.querySelector('.btn-primary').addEventListener('click', login);
@@ -17,7 +17,7 @@ function login(){
 
     axios({
         method: 'post',
-        url: 'https://sand2003.github.io/proyecto1/Pokedex/user/login',
+        url: 'http://localhost:9000/user/login',
         data: {
             user_mail: mail, 
             user_password: pass
