@@ -4,3 +4,6 @@ nombre, apellidos, teléfono, correo electrónico y dirección. Recientemente, d
 seguridad, perdieron varios registros por lo que buscan un sistema que les permita realizar la
 administración de los empleados (altas, bajas, consultas y cambios) únicamente a ciertos usuarios
 dados de alta en el sistema.
+
+
+Para entrar =>  /Pokedex
