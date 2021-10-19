@@ -1,5 +1,6 @@
 //jalar datos del servidor
 window.onload = init;
+var url = 'http://localhost:9000'; //se tiene que cambiar
 var headers = {};
 
 function init(){
@@ -20,7 +21,7 @@ function init(){
 
 
 function loadUser(){
-    axios.get("http://localhost:9000/user", headers)
+    axios.get(url + "/user", headers)
     .then(function(res){
         console.log(res);
     }).catch(function(err){

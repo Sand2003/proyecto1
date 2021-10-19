@@ -1,4 +1,5 @@
 window.onload = init;
+var url = 'http://localhost:9000'; //se tiene que cambiar
 var headers = {};
 
 function init(){
@@ -22,7 +23,7 @@ function buscar(){
     
     axios({
         method: 'get',
-        url: 'http://localhost:9000/user/' + name
+        url: url + '/user/' + name
     },headers).then(function(res) {
         console.log(res);
         displayuser(res.data.message);

@@ -1,4 +1,5 @@
 window.onload = init;
+var url = 'http://localhost:9000'; //se tiene que cambiar
 //disponible para todos
 
 function init(){
@@ -17,7 +18,7 @@ function login(){
 
     axios({
         method: 'post',
-        url: 'http://localhost:9000/user/login',
+        url: url + '/user/login',
         data: {
             user_mail: mail, 
             user_password: pass

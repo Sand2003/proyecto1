@@ -1,4 +1,5 @@
 window.onload = init;
+var url = 'http://localhost:9000'; //se tiene que cambiar
 var headers = {};
 
 function init(){
@@ -29,7 +30,7 @@ function modify(){
 
     axios({
         method: 'put',
-        url: 'http://localhost:9000/user/put/' + id,
+        url: url + '/user/put/' + id,
         data: {
             user_id: id,
             user_name: name,

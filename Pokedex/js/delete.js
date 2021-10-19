@@ -1,4 +1,5 @@
 window.onload = init;
+var url = 'http://localhost:9000'; //se tiene que cambiar
 var headers = {};
 
 function init(){
@@ -22,7 +23,7 @@ function borrar(){
     
     axios({
         method: 'delete',
-        url: 'http://localhost:9000/user/delete/' + id
+        url: url + '/user/delete/' + id
     }, headers).then(function(res) {
         console.log(res);
         alert("Usuario eliminado correctamente");
